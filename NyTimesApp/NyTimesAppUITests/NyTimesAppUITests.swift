@@ -9,6 +9,8 @@
 import XCTest
 
 class NyTimesAppUITests: XCTestCase {
+    
+    var app: XCUIApplication!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -16,6 +18,10 @@ class NyTimesAppUITests: XCTestCase {
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
 
+        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
+        app = XCUIApplication()
+        app.launch()
+        
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
 
@@ -38,6 +44,25 @@ class NyTimesAppUITests: XCTestCase {
             measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
                 XCUIApplication().launch()
             }
+        }
+    }
+    
+    func testArticlesList(){
+        
+        //fetching table view from the accessibility Identifier and
+        let firstCell = app.tables["articlesListingTableView"].cells.firstMatch
+        if firstCell.waitForExistence(timeout: 7), firstCell.exists {
+            firstCell.tap()
+            sleep(1)
+            app.navigationBars["NyTimesApp.PopularArticlesDetailView"].buttons["Back"].tap()
+             sleep(1)
+            
+            //scrolling up to table
+            app.tables["articlesListingTableView"].swipeUp()
+            sleep(1)
+            
+            //scrolling down to table
+            app.tables["articlesListingTableView"].swipeDown()
         }
     }
 }
