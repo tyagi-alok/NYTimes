@@ -130,7 +130,7 @@ class PopularArticlesViewModelTest: XCTestCase {
 class MockApiService: APIServiceProtocol {
    
     var isFetchPopularArticlesCalled = false
-    var completeClosure : PopularArticlesService.GetFriendsResult?
+    var completeClosure : PopularArticlesService.GetArticlesResult?
     
     func getPopularArtciles(_ completion: @escaping ((Result<PopularArticlesModel, ErrorResult>) -> Void)) {
         isFetchPopularArticlesCalled = true

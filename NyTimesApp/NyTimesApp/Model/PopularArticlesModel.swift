@@ -55,7 +55,7 @@ struct Metadata:Codable {
 extension PopularArticlesModel {
     static func with(status: String = "OK",
                      resultsNumber: Int = 10,
-                     articles: [Articles] = [Articles(publishedDate: "10-11-2020", title: "saasada", abstract: "asdadss", byline: "asdsd", id: 11234567, media: [])]) -> PopularArticlesModel
+                     articles: [Articles] = [Articles(publishedDate: "10-11-2020", title: "title", abstract: "abstract", byline: "byline", id: 11234567, media: [])]) -> PopularArticlesModel
     {
         return PopularArticlesModel(status: status, resultsNumber: resultsNumber, articles: articles)
     }

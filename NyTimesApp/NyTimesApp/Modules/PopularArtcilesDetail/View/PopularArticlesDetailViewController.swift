@@ -21,17 +21,17 @@ class PopularArticlesDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //init the UI
-        setUpUI()
+        //set the UI values
+        populateUIData()
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isHidden = false
     }
     
-    private func setUpUI(){
+    // MARK: - UI Set Up Functions
+    private func populateUIData(){
         if let title = titleStr{
             titleLabel.text = title
         }
@@ -39,9 +39,16 @@ class PopularArticlesDetailViewController: UIViewController {
         if let abstract = abstractStr{
             abstractLabel.text = abstract
         }
-        if let image = imageUrl{
-            mainImageView?.sd_setImage(with: URL( string: image), completed: nil)
-        }
         
+        if let image = imageUrl{
+            mainImageView?.sd_setImage(with: URL(string: image)) { (image, error, cache, urls) in
+                if (error != nil) {
+                    self.mainImageView?.image = UIImage(named: DETAIL_PLACEHOLDER_IMAGE_STR)
+                } else {
+                    self.mainImageView?.image = image
+                }
+            }
+
+        }
     }
 }

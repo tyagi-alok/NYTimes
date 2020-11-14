@@ -14,8 +14,8 @@ protocol APIServiceProtocol {
 
 final class PopularArticlesService:APIServiceProtocol {
     
-    typealias GetFriendsResult = Result<PopularArticlesModel,ErrorResult>
-    typealias GetFriendsCompletion = (_ result: GetFriendsResult) -> Void
+    typealias GetArticlesResult = Result<PopularArticlesModel,ErrorResult>
+    typealias GetArticlesCompletion = (_ result: GetArticlesResult) -> Void
 
     private let apiClient: APIClient!
     
@@ -23,7 +23,7 @@ final class PopularArticlesService:APIServiceProtocol {
         self.apiClient = apiClient
     }
     
-    func getPopularArtciles(_ completion: @escaping GetFriendsCompletion) {
+    func getPopularArtciles(_ completion: @escaping GetArticlesCompletion) {
         let resource = Resource(url: URL(string:AppURL.SeeAllPopularArticles)!)
         apiClient.load(resource) { (result) in
             switch result {

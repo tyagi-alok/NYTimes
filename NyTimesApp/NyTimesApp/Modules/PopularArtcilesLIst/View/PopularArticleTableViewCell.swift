@@ -15,40 +15,35 @@ class PopularArticleTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    
     var articlesCellViewModel : Articles? {
         didSet {
+            
             titleLabel.text = articlesCellViewModel?.title ?? ""
             authorLabel.text = articlesCellViewModel?.byline ?? ""
-            if articlesCellViewModel?.media.count ?? 0 > 0{
-                if articlesCellViewModel?.media[0].mediaMetadata.count ?? 0 > 2{
-                //    mainImageView?.sd_setImage(with: URL( string: articlesCellViewModel?.media[0].mediaMetadata[0].imageUrl ?? "" ), completed: nil)
-//                    mainImageView?.sd_setImage(with: URL( string: articlesCellViewModel?.media[0].mediaMetadata[0].imageUrl ?? "", placeholderImage: "placeholder-image"))
-                  mainImageView?.sd_setImage(with: URL( string: articlesCellViewModel?.media[0].mediaMetadata[0].imageUrl ?? "" )) { (image, error, cache, urls) in
-                                if (error != nil) {
-                                    self.mainImageView?.image = UIImage(named: "placeholder-image")
-                                } else {
-                                    self.mainImageView?.image = image
-                                }
+            dateLabel.text = articlesCellViewModel?.publishedDate ?? ""
+
+            if articlesCellViewModel?.media.count ?? ZERO > ZERO{
+                if articlesCellViewModel?.media[ZERO].mediaMetadata.count ?? ZERO > TWO{
+                    mainImageView?.sd_setImage(with: URL( string: articlesCellViewModel?.media[ZERO].mediaMetadata[ZERO].imageUrl ?? "" )) { (image, error, cache, urls) in
+                        if (error != nil) {
+                            self.mainImageView?.image = UIImage(named: PLACEHOLDER_IMAGE_STR)
+                        } else {
+                            self.mainImageView?.image = image
+                        }
                     }
                 }else{
-                    mainImageView?.image = UIImage(named: "placeholder-image")
+                    mainImageView?.image = UIImage(named: PLACEHOLDER_IMAGE_STR)
                 }
             }else{
-                mainImageView?.image = UIImage(named: "placeholder-image")
+                mainImageView?.image = UIImage(named: PLACEHOLDER_IMAGE_STR)
             }
-            dateLabel.text = articlesCellViewModel?.publishedDate
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

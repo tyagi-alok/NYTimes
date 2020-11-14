@@ -18,6 +18,7 @@ class PopularArticlesListViewModel {
     }
 }
     
+    // MARK: - Computed properties
     var isLoading: Bool = false {
         didSet {
             self.updateLoadingStatus?()
@@ -36,14 +37,17 @@ class PopularArticlesListViewModel {
     
     var selectedIndexPath: IndexPath?
     
-
+    // MARK: - CallBack Handlers
     var reloadTableViewClosure: (()->())?
     var showAlertClosure: (()->())?
     var updateLoadingStatus: (()->())?
 
+    // MARK: - Constructor
     init( apiService: APIServiceProtocol = PopularArticlesService(apiClient: APIClient())) {
         self.apiService = apiService
     }
+    
+    // MARK: - API
     
     /*--calling api to fetch popular articles--*/
     func initFetch() {
@@ -60,42 +64,13 @@ class PopularArticlesListViewModel {
     }
     
     
+    // MARK: - Get CellModel
     func getCellViewModel( at indexPath: IndexPath ) -> Articles? {
             return cellViewModels?.articles[indexPath.row]
     }
-    
-//    func createCellViewModel( photo: Photo ) -> PhotoListCellViewModel {
-//
-//        //Wrap a description
-//        var descTextContainer: [String] = [String]()
-//        if let camera = photo.camera {
-//            descTextContainer.append(camera)
-//        }
-//        if let description = photo.description {
-//            descTextContainer.append( description )
-//        }
-//        let desc = descTextContainer.joined(separator: " - ")
-//
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd"
-//
-//        return PhotoListCellViewModel( titleText: photo.name,
-//                                       descText: desc,
-//                                       imageUrl: photo.image_url,
-//                                       dateText: dateFormatter.string(from: photo.created_at) )
-//    }
-    
-//    private func processFetchedPhoto( photos: [Photo] ) {
-//        self.photos = photos // Cache
-//        var vms = [PhotoListCellViewModel]()
-//        for photo in photos {
-//            vms.append( createCellViewModel(photo: photo) )
-//        }
-//        self.cellViewModels = vms
-//    }
-//
 }
 
+// MARK: - Extension
 extension PopularArticlesListViewModel {
     func userPressed( at indexPath: IndexPath ){
         self.selectedIndexPath = indexPath

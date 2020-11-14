@@ -54,7 +54,7 @@ class NyTimesAppUITests: XCTestCase {
         if firstCell.waitForExistence(timeout: 7), firstCell.exists {
             firstCell.tap()
             sleep(1)
-            app.navigationBars["NyTimesApp.PopularArticlesDetailView"].buttons["Back"].tap()
+            app.navigationBars["NyTimesApp.PopularArticlesDetailView"].buttons["NY Times Most popular"].tap()
              sleep(1)
             
             //scrolling up to table

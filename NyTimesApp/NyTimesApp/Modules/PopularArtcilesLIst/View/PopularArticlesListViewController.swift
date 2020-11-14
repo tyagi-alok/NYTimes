@@ -37,6 +37,7 @@ class PopularArticlesListViewController: UIViewController {
         setUpNavBar()
     }
     
+    // MARK: - Set up UI functions
     func setUpNavBar(){
         
         navigationController?.navigationBar.barTintColor = navigationBarTintColor
@@ -97,6 +98,7 @@ class PopularArticlesListViewController: UIViewController {
 
     }
     
+// MARK: - Get show Alert
   private func showAlert( _ message: String ) {
         let alert = UIAlertController(title: ALERT_TITLE, message: message, preferredStyle: .alert)
         alert.addAction( UIAlertAction(title: ALERT_OK_BUTTON_TITLE, style: .cancel, handler: nil))
@@ -104,15 +106,17 @@ class PopularArticlesListViewController: UIViewController {
     }
 }
 
+// MARK: - Segue
 //Overriding the segue
 extension PopularArticlesListViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if let vc = segue.destination as? PopularArticlesDetailViewController,let artcile = viewModel.getCellViewModel(at: viewModel.selectedIndexPath!),artcile.abstract != nil{
             vc.titleStr = artcile.title
             vc.abstractStr = artcile.abstract
-            if artcile.media.count > 0{
-                if artcile.media[0].mediaMetadata.count > 2{
-                    vc.imageUrl = artcile.media[0].mediaMetadata[2].imageUrl
+            if artcile.media.count > ZERO{
+                if artcile.media[ZERO].mediaMetadata.count > TWO{
+                    vc.imageUrl = artcile.media[ZERO].mediaMetadata[TWO].imageUrl
                 }else{
                     vc.imageUrl = ""
                 }
@@ -123,6 +127,7 @@ extension PopularArticlesListViewController {
     }
 }
 
+// MARK: - protocol methods
 //Conforming to the protocols for the adapter class
 extension PopularArticlesListViewController : ArticleListProtocol {
     func getData(atIndexPath: IndexPath) -> Articles? {
@@ -136,7 +141,7 @@ extension PopularArticlesListViewController : ArticleListProtocol {
     
     
     func retrieveNumberOfSections()->Int {
-        return 1
+        return ONE
     }
 
     func retrieveNumberOfItems()->Int {

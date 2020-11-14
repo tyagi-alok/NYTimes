@@ -10,5 +10,4 @@ import Foundation
 
 struct AppURL {
     static let SeeAllPopularArticles = "https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=kDOFCueo43oe8wKfh7YxV4qadA3YGGey"
-    
 }

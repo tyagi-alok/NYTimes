@@ -19,7 +19,7 @@ class PopularArticlesListAdapter: NSObject {
     }
 }
 
-// MARK: - UICollectionViewDataSource Delegate implementation
+// MARK: - UITableViewDataSource Delegate implementation
 
 extension PopularArticlesListAdapter: UITableViewDelegate, UITableViewDataSource {
     

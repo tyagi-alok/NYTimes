@@ -40,7 +40,7 @@ class APIServiceTest: XCTestCase {
         // Given A apiservice
         let mockService = self.mockService!
 
-        // When fetch popular photo
+        // When fetch popular articles
         let expect = XCTestExpectation(description: "callback")
         mockService.getPopularArtciles { (result) in
             expect.fulfill()
